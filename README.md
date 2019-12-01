@@ -1,6 +1,6 @@
 # Alchitry Cu with Spinal HDL template
 
-A template project to use Spinal HDL with an Alchitry Cu
+A template project to use Spinal HDL with an Alchitry Cu (With support for the Alchitry IO board)
 
 ## Requirements
 
