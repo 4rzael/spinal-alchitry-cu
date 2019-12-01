@@ -1,0 +1,1 @@
+["sbt.Task[scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]",{"hashes":[["/home/arzael/alchitry/spinal_test/build.sbt","5dd3a61030aaab6b87db28db1181f6703a4772d0"],["/home/arzael/alchitry/spinal_test/project/plugins.sbt","5b59bc97e8f47e5ebec95d62abc5f0e811ec01e1"]],"lastModifiedTimes":[]}]
