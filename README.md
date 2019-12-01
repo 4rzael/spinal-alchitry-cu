@@ -16,7 +16,6 @@ You will need:
 * The `make` make
 
 Also, optionally:
-* Alchitry Labs, if you want to retrieve additional PCF files (for the IO board for example)
 * If you have problems with the last step (upload), it can be fixed by using apio to install the FTDI drivers
 
 ## Installation
