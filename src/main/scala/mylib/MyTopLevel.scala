@@ -23,20 +23,33 @@ import spinal.lib._
 
 import scala.util.Random
 
+case class LedBinaryCounter(val ledCount: Int) extends Component {
+  val io = new Bundle {
+    val leds = out Bits(ledCount bits)
+  }
+  val cnt = Reg(U(0, ledCount bits))
+  cnt := cnt + 1
+  io.leds := B(cnt)
+}
+
 //Hardware definition
 class CuTop extends Component {
   val io = new Bundle {
     val leds = out Bits(8 bits)
   }
-  io.leds := 0xff
-}
 
-//Define a custom SpinalHDL configuration with synchronous reset instead of the default asynchronous one. This configuration can be resued everywhere
-object MySpinalConfig extends SpinalConfig(defaultConfigForClockDomains = ClockDomainConfig(resetKind = SYNC))
+  val areaVerySlow = new SlowArea(1024 * 1024){
+    val counter = LedBinaryCounter(8)
+    io.leds := counter.io.leds
+  }
+}
 
 //Generate the MyTopLevel's Verilog using the above custom configuration.
 object MyTopLevelVerilogWithCustomConfig {
   def main(args: Array[String]) {
-    MySpinalConfig.generateVerilog(new CuTop)
+    new SpinalConfig(
+    defaultClockDomainFrequency = FixedFrequency(100 MHz),
+    defaultConfigForClockDomains = ClockDomainConfig(resetKind=SYNC, resetActiveLevel=LOW)
+  ).generateVerilog(new CuTop)
   }
 }
